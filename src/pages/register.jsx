@@ -10,7 +10,7 @@ function Register() {
   const navigate = useNavigate();
 
   const loginRedirect = () => {
-    navigate("/");
+    navigate("/login");
   };
 
   const handleSubmit = (event) => {

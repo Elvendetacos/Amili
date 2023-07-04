@@ -11,8 +11,8 @@ function Login() {
     navigate("/register");
   };
 
-  const homeRedirect = () => {
-    navigate("/home");
+  const keyRedirect = () => {
+    navigate("/key");
   };
 
   const handleSubmit = (event) => {
@@ -62,7 +62,7 @@ function Login() {
           <div className="h-[30%] w-[100%] flex justify-center items-center">
             <button
               className="bg-[#B76C47] h-[40%] w-[80%] rounded-sm text-white xl:text-[20px] 2xl:text-[30px] scale-100 hover:scale-[1.01] hover:bg-[#b1775a]"
-              onClick={homeRedirect}
+              onClick={keyRedirect}
             >
               Login
             </button>

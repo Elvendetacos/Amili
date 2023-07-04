@@ -9,9 +9,13 @@ export default {
       backgroundImage: {
         'Banner': "url('./src/assets/images/Banner.jpeg')",
         'Tank': "url('./src/assets/images/waterTank.svg')",
+        'BannerLanding': "url('./src/assets/images/wetFloor.jpeg')",
+        'Worm': "url('./src/assets/images/worm.jpg')",
       },
       fontFamily: {
-        'Rubik': ['Rubik', 'sans-serif']  
+        'Rubik': ['Rubik', 'sans-serif'],
+        'Script':["Clicker Script", "cursive"],
+        'Playfair': ['Playfair Display', 'serif']
       },
       keyframes: {
         liquid: {
