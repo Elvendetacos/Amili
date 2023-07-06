@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'Banner': "url('./src/assets/images/Banner.jpeg')",
-        'Tank': "url('./src/assets/images/waterTank.svg')",
-        'BannerLanding': "url('./src/assets/images/wetFloor.jpeg')",
-        'Worm': "url('./src/assets/images/worm.jpg')",
+        'Banner': "url('$images/Banner.jpeg')",
+        'Tank': "url('$images/waterTank.svg')",
+        'BannerLanding': "url('$images/wetFloor.jpeg')",
+        'Worm': "url('$images/worm.jpg')",
       },
       fontFamily: {
         'Rubik': ['Rubik', 'sans-serif'],
