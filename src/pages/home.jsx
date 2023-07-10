@@ -1,4 +1,4 @@
-import SideBar from "../components/sideBar";
+import SideBar from "../layouts/sideBar";
 import { useEffect, useState } from "react";
 import iconTemperature from "../assets/images/temperature.png";
 import iconLigth from "../assets/images/sun.png";
