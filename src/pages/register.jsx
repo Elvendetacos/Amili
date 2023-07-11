@@ -3,9 +3,9 @@ import { useState } from "react";
 
 function Register() {
 
-  const [email, setEmail] = useState();
-  const [name, setName] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState(null);
+  const [name, setName] = useState(null);
+  const [password, setPassword] = useState(null);
 
   const navigate = useNavigate();
 
@@ -13,8 +13,31 @@ function Register() {
     navigate("/login");
   };
 
+  const createUser = () => {
+    fetch('http://localhost:8080/auth/signUp',{
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        "name": name,
+        "email": email,
+        "password": password
+      }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Content-Type": "application/json",
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+  
   const handleSubmit = (event) => {
     event.preventDefault();
+    createUser();
+    navigate('/login')
   };
 
   return (

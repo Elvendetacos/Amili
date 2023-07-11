@@ -1,4 +1,4 @@
-import SideBar from "../components/sideBar";
+import SideBar from "../layouts/sideBar";
 import HistoryComponent from "../components/historyComponent";
 
 function History() {
@@ -108,8 +108,8 @@ function History() {
                     <p className="w-1/6">Status</p>
                 </div>
                 <div className="w-auto ml-[10px] h-[100%] pb-[2%] overflow-auto">
-                {Test.map((item)=>(
-                    <HistoryComponent information={item}/>
+                {Test.map((item, key)=>(
+                    <HistoryComponent key={key} information={item}/>
                 ))}
                 </div>
             </div>
