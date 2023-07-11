@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useUserStore } from "../store/userStore";
+import { shallow } from "zustand/shallow";
+
 
 function Login() {
   const navigate = useNavigate();
@@ -7,16 +10,48 @@ function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const { change } = useUserStore()
+
+  const {userKey} = useUserStore(
+    (state) => ({
+      userKey: state.userKey,
+    }),
+    shallow
+  );
+
+  useEffect(() => {
+    if(Object.keys(userKey).length !== 0){
+      navigate('/Home')
+    }
+  }, [userKey]);
+
+  const loginUser = () =>{
+    fetch('http://localhost:8080/auth/signIn',{
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        "email": email,
+        "password": password
+      }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Content-Type": "application/json",
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => change(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
   const registerRedirect = () => {
     navigate("/register");
   };
 
-  const keyRedirect = () => {
-    navigate("/key");
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    loginUser(); 
   };
 
   return (
@@ -27,7 +62,7 @@ function Login() {
             <div className="h-1/2 w-full flex justify-center items-center ">
               <div className="relative z-0 w-[80%] xl:text-[20px] 2xl:text-[30px]">
                 <input
-                  type="text"
+                  type="email"
                   id="floating_standard"
                   className="block py-2.5 text-[#808080] px-0 w-full bg-transparent border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
@@ -62,7 +97,6 @@ function Login() {
           <div className="h-[30%] w-[100%] flex justify-center items-center">
             <button
               className="bg-[#B76C47] h-[40%] w-[80%] rounded-sm text-white xl:text-[20px] 2xl:text-[30px] scale-100 hover:scale-[1.01] hover:bg-[#b1775a]"
-              onClick={keyRedirect}
             >
               Login
             </button>

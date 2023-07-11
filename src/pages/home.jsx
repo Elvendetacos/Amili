@@ -3,18 +3,26 @@ import { useEffect, useState } from "react";
 import iconTemperature from "../assets/images/temperature.png";
 import iconLigth from "../assets/images/sun.png";
 import Worms from "../assets/images/Worms.png";
-import WaterTank from "../assets/images/waterTank.svg";
 import Tank from "../assets/images/reservoir.png";
 import DropWater from "../assets/images/dropWater.png";
 import Strata from "../assets/images/strata_icon.svg";
+import { useUserStore } from "../store/userStore";
+import { shallow } from "zustand/shallow";
 
 function Home() {
   const [weekday, setWeekday] = useState();
   const [hour, setHour] = useState();
   const [currentDate, setCurrentDate] = useState();
 
+  const {userKey, user} = useUserStore(
+    (state) => ({
+      userKey: state.userKey,
+      user: state.user
+    }),
+    shallow
+  );
+
   const Test = {
-    name: "Brian",
     temperature: 20,
     luxes: 28,
     humidity: {
@@ -25,6 +33,9 @@ function Home() {
     status: "Danger",
   };
 
+
+  const { getUser } = useUserStore()
+
   useEffect(() => {
     let dateNew = new Date();
     let weekdayTemp = { weekday: "long" };
@@ -34,7 +45,8 @@ function Home() {
     setWeekday(dateNew.toLocaleString("en-US", weekdayTemp));
     setCurrentDate(dateNew.toLocaleString("en", dateTemp));
     setHour(dateNew.toLocaleTimeString("en-US", hourTemp));
-  });
+    getUser(userKey.username, userKey.jwtToken)
+  },[]);
 
   return (
     <div className="h-[100vmin]  w-[100%] bg-[#F2EAEA] flex">
@@ -44,7 +56,7 @@ function Home() {
           <div className="w-full h-full backdrop-blur-[4px]">
             <div className="w-full h-[25%] flex text-black font-Rubik">
               <div className="w-[50%] h-full text-[40px] pt-[30px] pl-[30px]">
-                <p>Welcome, {Test.name}!</p>
+                <p>Welcome, {user && user.name}!</p>
               </div>
               <div className="w-[50%] h-full text-[15px] flex flex-col items-end pt-[30px] pr-[30px]">
                 <p>{weekday}</p>
