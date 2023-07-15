@@ -7,6 +7,7 @@ import Tank from "../assets/images/reservoir.png";
 import DropWater from "../assets/images/dropWater.png";
 import Strata from "../assets/images/strata_icon.svg";
 import { useUserStore } from "../store/userStore";
+import { useFireStore } from '../store/firebaseStore'
 import { shallow } from "zustand/shallow";
 
 function Home() {
@@ -22,6 +23,13 @@ function Home() {
     shallow
   );
 
+  const {sensorData} = useFireStore(
+    (state) =>({
+      sensorData: state.sensorData
+    }),
+    shallow
+  )
+
   const Test = {
     temperature: 20,
     luxes: 28,
@@ -35,8 +43,9 @@ function Home() {
 
 
   const { getUser } = useUserStore()
+  const { updateData } = useFireStore()
 
-  useEffect(() => {
+  useEffect(()=>{
     let dateNew = new Date();
     let weekdayTemp = { weekday: "long" };
     let hourTemp = { hour: "2-digit", minute: "2-digit" };
@@ -46,7 +55,9 @@ function Home() {
     setCurrentDate(dateNew.toLocaleString("en", dateTemp));
     setHour(dateNew.toLocaleTimeString("en-US", hourTemp));
     getUser(userKey.username, userKey.jwtToken)
-  },[]);
+    updateData()
+  },[])
+
 
   return (
     <div className="h-[100vmin]  w-[100%] bg-[#F2EAEA] flex">
@@ -117,7 +128,7 @@ function Home() {
               <div className="h-[90%] w-[40%] text-black flex flex-col justify-center items-center">
                 <img src={Strata} alt="" className="xl:h-[25%] 2xl:h-[30%]" />
                 <p className="flex justify-center items-center xl:text-[60px] 2xl:text-[80px]">
-                  {Test.humidity.strata1}%
+                  {sensorData.humidity1}%
                 </p>
                 <p className="flex justify-center items-center xl:text-[30px] 2xl:text-[35px]">
                   Strata 1
