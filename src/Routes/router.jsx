@@ -6,6 +6,7 @@ import ProductKey from "../pages/productKey";
 import LandingPage from "../pages/landingPage";
 import History from "../pages/history";
 import { ProtectedRoutes } from "../components/protectedRoutes";
+import Statistics from "../pages/statistics";
 
 function Router() {
   return ( 
@@ -14,6 +15,7 @@ function Router() {
         <Route element={<ProtectedRoutes/>}>
           <Route path="/home" element={<Home/>}></Route>
           <Route path="/home/history" element={<History/>}></Route>
+          <Route path="/home/statistics" element={<Statistics/>} ></Route>
         </Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/register" element={<Register/>}></Route>
