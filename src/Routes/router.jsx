@@ -12,11 +12,11 @@ function Router() {
   return ( 
     <BrowserRouter>
       <Routes>
-        {/* <Route element={<ProtectedRoutes/>}> */}
+        <Route element={<ProtectedRoutes/>}>
           <Route path="/home" element={<Home/>}></Route>
           <Route path="/home/history" element={<History/>}></Route>
           <Route path="/home/statistics" element={<Statistics/>} ></Route>
-        {/* </Route> */}
+        </Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/key" element={<ProductKey/>}></Route>
