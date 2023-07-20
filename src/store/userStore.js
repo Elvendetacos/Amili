@@ -8,7 +8,7 @@ export const useUserStore = create((set) => ({
       userKey: key,
     })),
   getUser: async (username, key) => {
-    const response = await fetch(`http://localhost:8080/user/${username}`, {
+    const response = await fetch(`http://api-user.us-east-1.elasticbeanstalk.com:8080/user/${username}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -29,4 +29,9 @@ export const useUserStore = create((set) => ({
       user,
     }));
   },
+  clearTokens: () =>{
+    set((state) => ({
+      userKey: {}
+    }))
+  }
 }));

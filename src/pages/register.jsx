@@ -14,7 +14,7 @@ function Register() {
   };
 
   const createUser = () => {
-    fetch('http://localhost:8080/auth/signUp',{
+    fetch('http://api-user.us-east-1.elasticbeanstalk.com:8080/auth/signUp',{
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify({
@@ -37,7 +37,7 @@ function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     createUser();
-    navigate('/login')
+    navigate('/')
   };
 
   return (

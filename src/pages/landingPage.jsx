@@ -6,7 +6,7 @@ import Facebook from "../assets/images/facebook.svg";
 import Instagram from "../assets/images/instagram.svg";
 import Twitter from "../assets/images/twitter.svg";
 import Youtube from "../assets/images/youtube.svg";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import useObserver from "../hooks/useObserver";
 import { useNavigate } from "react-router-dom";
 
