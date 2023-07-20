@@ -51,7 +51,8 @@ export function Graphic(){
             hourArray.push(hour[0] + ':' + hour[1]);
             humidity1.push(userHistoryData[index].humidityAbove)
             humidity2.push(userHistoryData[index].humidityBelow)
-            humidityMedium.push(userHistoryData[index].medium)
+            humidityMedium.push(userHistoryData[index].median)
+            console.log(userHistoryData[index].median)
         }
 
     const data = {

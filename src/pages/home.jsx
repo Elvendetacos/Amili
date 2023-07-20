@@ -96,9 +96,13 @@ function Home() {
                   <div className="xl:w-[48%] drop-shadow-[5px_5px_4px_rgba(0,0,0,0.25)] 2xl:w-[55%] h-full rounded-full bg-[#FF5C00] flex justify-center items-center">
                     <div className="xl:w-[95%] 2xl:w-[95%] h-[95%] rounded-full bg-gradient-to-t from-[rgba(214,140,70,0.70)] via-[rgb(214,140,70)] to-[rgba(214,140,70,0.50)] flex flex-col justify-center items-center">
                       <img src={Worms} alt="" className="h-[32px] w-[32px]" />
-                      <p className="xl:text-[45px] 2xl:text-[55px] h-[50%] flex justify-center items-center">
-                        {Test.status}
-                      </p>
+                        {
+                          sensorData.temperature < 27 && sensorData.temperature > 20 && sensorData.humidity1 > 80 && sensorData.humidity1 < 90 ? (
+                            <p className="xl:text-[45px] 2xl:text-[55px] h-[50%] flex justify-center items-center">Good</p>
+                          ) : (
+                            <p className="xl:text-[45px] 2xl:text-[55px] h-[50%] flex justify-center items-center">Danger</p>
+                          )
+                        }
                       <p className="xl:text-[20px] 2xl:text-[30px]">Status</p>
                     </div>
                   </div>
