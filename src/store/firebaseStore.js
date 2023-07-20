@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
-import { useEffect } from 'react';
 
 export const useFireStore = create((set)=>({
   sensorData: {},
@@ -20,7 +19,7 @@ export const useFireStore = create((set)=>({
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
 
-  const count = ref(database, '/esp32')
+  const count = ref(database, '/amili/esp32')
   onValue(count, (snapshot) => {
       const data = snapshot.val()
       console.log(data)
