@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useUserStore } from "../store/userStore";
 import { shallow } from "zustand/shallow";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 function Login() {
   const navigate = useNavigate();
@@ -37,35 +39,46 @@ function Login() {
   }, [userKey]);
 
   const loginUser = () => {
-    fetch("http://api-user.us-east-1.elasticbeanstalk.com:8080/auth/signIn", {
-      method: "POST",
-      mode: "cors",
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJlJYGGVx2-9nGlgKkE5wJJj0092Y6MPs",
+      authDomain: "amili-7cf9e.firebaseapp.com",
+      databaseURL: "https://amili-7cf9e-default-rtdb.firebaseio.com",
+      projectId: "amili-7cf9e",
+      storageBucket: "amili-7cf9e.appspot.com",
+      messagingSenderId: "850124173621",
+      appId: "1:850124173621:web:53b83837825cdf14f7dc7c",
+      measurementId: "G-5JQ2VJ8DV2"
+    };
+  
+    firebase.initializeApp(firebaseConfig)
+    const auth = firebase.auth();
+  
+  
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      change(user)
+      // ...
     })
-      .then((response) => response.json())
-      .then((data) => change(data))
-      .catch((error) => {
-        console.error("Error:", error);
-        setAnimate({
-          animation: "animate-none",
-          staus: false,
-        });
-        setAlert(
-            {
-              colorInput: 'focus:border-red-600',
-              colorLabel: 'peer-focus:text-red-600',
-              colorFloat: 'text-red-600',
-              status: true
-            }
-        );
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      setAlert(
+        {
+          colorInput: 'focus:border-red-600',
+          colorLabel: 'peer-focus:text-red-600',
+          colorFloat: 'text-red-600',
+          status: true
+        }
+    );
+      setAnimate({
+        animation: "animate-none",
+        staus: false,
       });
+    });
   };
 
   const registerRedirect = () => {

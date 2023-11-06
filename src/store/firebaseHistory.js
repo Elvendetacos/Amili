@@ -8,7 +8,7 @@ export const useFireHistory = create((set)=>({
     const firebaseConfig = {
       apiKey: "AIzaSyAJlJYGGVx2-9nGlgKkE5wJJj0092Y6MPs",
       authDomain: "amili-7cf9e.firebaseapp.com",
-      databaseURL: "https://amili-7cf9e-default-rtdb.firebaseio.com/",
+      databaseURL: "https://amili-7cf9e-default-rtdb.firebaseio.com",
       projectId: "amili-7cf9e",
       storageBucket: "amili-7cf9e.appspot.com",
       messagingSenderId: "850124173621",

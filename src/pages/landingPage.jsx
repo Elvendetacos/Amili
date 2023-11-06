@@ -11,7 +11,7 @@ import useObserver from "../hooks/useObserver";
 import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
-
+  
   const landingInformation = useRef(null)
   const landingFreatures = useRef(null)
   const landingChoose = useRef(null)

@@ -68,7 +68,7 @@ function Home() {
           <div className="w-full h-full backdrop-blur-[4px]">
             <div className="w-full h-[25%] flex text-black font-Rubik">
               <div className="w-[50%] h-full text-[30px] pt-[30px] pl-[30px]">
-                <p>Welcome, {user && user.name}!</p>
+                <p>Welcome, Admin!</p>
               </div>
               <div className="w-[50%] h-full text-[15px] flex flex-col items-end pt-[30px] pr-[30px]">
                 <p>{weekday}</p>
